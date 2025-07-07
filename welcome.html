@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Good Morning Cutie 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(to bottom right, #ffe6f0, #fffafc);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    .rose {
+      width: 180px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .prompt {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #ad1457;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    .heart-box {
+      width: 100px;
+      margin-top: 30px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite, fadeIn 3s ease-in-out forwards;
+      transition: transform 0.2s ease;
+    }
+
+    .heart-box:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatHearts 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="greeting">Good Morning, Cutie 💖</h1>
+
+  <img class="rose" src="rose.png" alt="Rose in Hand">
+
+  <div class="prompt">Click the heart to know why I love you, cutie 💌</div>
+
+  <img class="heart-box" src="heart.png" alt="Heart Box" onclick="goToLove()">
+
+  <!-- Floating Hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Time-based Greeting
+    const now = new Date();
+    const hour = now.getHours();
+    const greeting = document.getElementById("greeting");
+    if (hour >= 12 && hour < 17) greeting.textContent = "Good Afternoon, Cutie 💖";
+    else if (hour >= 17 || hour < 4) greeting.textContent = "Good Evening, Cutie 💖";
+
+    // Navigate to love.html
+    function goToLove() {
+      window.location.href = "love.html";
+    }
+
+    // Floating Hearts Generator
+    const heartsContainer = document.getElementById("hearts");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>

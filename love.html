@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why I Love You 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff0f5;
+      font-family: 'Dancing Script', cursive;
+      overflow: hidden;
+      color: #c2185b;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 2rem;
+      z-index: 1;
+    }
+
+    .message {
+      font-size: 2rem;
+      max-width: 800px;
+      line-height: 1.6;
+      white-space: pre-line;
+      border-right: 2px solid #c2185b;
+      overflow: hidden;
+      animation: typing 22s steps(90) 1 forwards, blink 1s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent }
+      50% { border-color: #c2185b; }
+    }
+
+    .footer {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      z-index: 1;
+    }
+
+    .hand-image {
+      width: 200px;
+      margin-top: 1rem;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Hearts */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatHearts 6s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="message" id="typewriter">
+      Okkk, you know what? I don't need any reason to love you... I love you as a whole. 
+      And here is a little message from my side:
+
+      Your smile lights up my world, your eyes calm every storm inside me, 
+      and your laugh is a healing mechanism.
+
+      I adore your kind heart, the little moments, and the way you make everything feel so good.
+
+      Cutie, if there were a word more meaningful than perfect, I would use that for you —
+      but you know what? You are more than perfect to me. Just be yourself — that’s more than enough.
+
+      I’m always here, always cheering for you, quietly loving every little thing you do, 
+      even when you don’t notice.
+
+      And I’ll always try to reply to your questions...
+    </div>
+
+    <div class="footer">
+      I’m waiting for you... 🤲<br>
+      <img src="hand.png" alt="Hand Forward" class="hand-image">
+    </div>
+  </div>
+
+  <!-- Heart Floating Particles -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Create floating hearts
+    const heartsContainer = document.getElementById("hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
